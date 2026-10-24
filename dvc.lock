@@ -1,0 +1,39 @@
+schema: '2.0'
+stages:
+  validate:
+    cmd: python src/validate.py
+    deps:
+    - path: data/raw/sales.csv
+      hash: md5
+      md5: c613a92c1742db2963c3b1355747b342
+      size: 102050
+    - path: src/validate.py
+      hash: md5
+      md5: 3931b30485be283555f50616b81c97e6
+      size: 2514
+    outs:
+    - path: data/validated/sales.csv
+      hash: md5
+      md5: c613a92c1742db2963c3b1355747b342
+      size: 102050
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/validated/sales.csv
+      hash: md5
+      md5: c613a92c1742db2963c3b1355747b342
+      size: 102050
+    - path: src/prepare.py
+      hash: md5
+      md5: bfb7975151d15009f8254be75a635169
+      size: 3789
+    params:
+      params.yaml:
+        prepare.seed: 42
+        prepare.test_size: 0.2
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 310dfbda8a61015cbd11f925f66e134f.dir
+      size: 102093
+      nfiles: 2

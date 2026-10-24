@@ -6,3 +6,13 @@ stages:
     - src/validate.py
     outs:
     - data/validated/sales.csv
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - data/validated/sales.csv
+    - src/prepare.py
+    params:
+    - prepare.seed
+    - prepare.test_size
+    outs:
+    - data/processed
