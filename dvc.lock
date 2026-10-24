@@ -25,8 +25,8 @@ stages:
       size: 102050
     - path: src/prepare.py
       hash: md5
-      md5: bfb7975151d15009f8254be75a635169
-      size: 3789
+      md5: eeb7147b7e9327e65aa5fcb707d272df
+      size: 1560
     params:
       params.yaml:
         prepare.seed: 42
@@ -37,3 +37,33 @@ stages:
       md5: 310dfbda8a61015cbd11f925f66e134f.dir
       size: 102093
       nfiles: 2
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: a020d81bfeb49151ce2e6e7f2ff08f04
+      size: 20454
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 5b70a764b9b5d8db987fd78e7ff47291
+      size: 81639
+    - path: src/train.py
+      hash: md5
+      md5: c5cd76b7e48d9988522b9a69125e19c4
+      size: 3257
+    params:
+      params.yaml:
+        train.max_depth: 10
+        train.min_samples_split: 2
+        train.n_estimators: 500
+        train.random_state: 42
+    outs:
+    - path: metrics/train_metrics.json
+      hash: md5
+      md5: c3b65466d61431b330ff1c5088c5db9f
+      size: 224
+    - path: models/random_forest.joblib
+      hash: md5
+      md5: cf30fec4adfcd767eddbe9403d785273
+      size: 44144257

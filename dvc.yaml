@@ -16,3 +16,18 @@ stages:
     - prepare.test_size
     outs:
     - data/processed
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - src/train.py
+    params:
+    - train.max_depth
+    - train.min_samples_split
+    - train.n_estimators
+    - train.random_state
+    outs:
+    - models/random_forest.joblib
+    metrics:
+    - metrics/train_metrics.json
