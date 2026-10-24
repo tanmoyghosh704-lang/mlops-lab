@@ -1,0 +1,8 @@
+stages:
+  validate:
+    cmd: python src/validate.py
+    deps:
+    - data/raw/sales.csv
+    - src/validate.py
+    outs:
+    - data/validated/sales.csv
