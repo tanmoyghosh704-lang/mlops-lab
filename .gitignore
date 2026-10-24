@@ -1,0 +1,10 @@
+myenv/
+__pycache__/
+*.pyc
+mlruns/
+mlartifacts/
+mlflow.db
+model/
+reports/
+.env
+.dvc/config.local
