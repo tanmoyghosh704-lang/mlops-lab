@@ -1,0 +1,24 @@
+
+# 1. Use official Airflow image
+FROM apache/airflow:2.10.5-python3.10
+
+# 2. Install Git at system level
+USER root
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# 3. Switch back to Airflow user
+USER airflow
+
+# 4. Copy project dependencies
+COPY requirements.txt /tmp/project-requirements.txt
+
+# 5. Create an isolated project environment
+RUN python -m venv /home/airflow/project-venv \
+    && /home/airflow/project-venv/bin/pip install --no-cache-dir --upgrade pip \
+    && /home/airflow/project-venv/bin/pip install --no-cache-dir -r /tmp/project-requirements.txt \
+    && /home/airflow/project-venv/bin/pip install --no-cache-dir dvc \
+    && /home/airflow/project-venv/bin/pip check

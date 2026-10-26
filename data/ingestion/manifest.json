@@ -1,0 +1,8 @@
+{
+    "processed_files": {
+        "5a504a58f8b6faca9b91fb4b3cf5e1e47a9e505fef6c0e52a850f82622fb5549": {
+            "filename": "sales_data_drift.csv",
+            "rows_added": 5000
+        }
+    }
+}

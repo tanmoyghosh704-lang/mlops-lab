@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw/sales.csv
       hash: md5
-      md5: c613a92c1742db2963c3b1355747b342
-      size: 102050
+      md5: c28e36dde06e5191d058fedc44c1df17
+      size: 104238
     - path: src/validate.py
       hash: md5
       md5: 3931b30485be283555f50616b81c97e6
@@ -14,19 +14,20 @@ stages:
     outs:
     - path: data/validated/sales.csv
       hash: md5
-      md5: c613a92c1742db2963c3b1355747b342
-      size: 102050
+      md5: 93947c9edb97260b19d33b730de754aa
+      size: 99237
   prepare:
     cmd: python src/prepare.py
     deps:
     - path: data/validated/sales.csv
       hash: md5
-      md5: c613a92c1742db2963c3b1355747b342
-      size: 102050
+      md5: 93947c9edb97260b19d33b730de754aa
+      size: 99237
     - path: src/prepare.py
       hash: md5
       md5: eeb7147b7e9327e65aa5fcb707d272df
       size: 1560
+      isexec: true
     params:
       params.yaml:
         prepare.seed: 42
@@ -34,24 +35,25 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: 310dfbda8a61015cbd11f925f66e134f.dir
-      size: 102093
+      md5: 79b223f8a434a25f9940a74002a476ed.dir
+      size: 99279
       nfiles: 2
   train:
     cmd: python src/train.py
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: a020d81bfeb49151ce2e6e7f2ff08f04
-      size: 20454
+      md5: 8a6eff4c3af48477dfda5c4f6a3a8b90
+      size: 19890
     - path: data/processed/train.csv
       hash: md5
-      md5: 5b70a764b9b5d8db987fd78e7ff47291
-      size: 81639
+      md5: a69e6724a3b8e3f1705a600a822d98f4
+      size: 79389
     - path: src/train.py
       hash: md5
       md5: c5cd76b7e48d9988522b9a69125e19c4
       size: 3257
+      isexec: true
     params:
       params.yaml:
         train.max_depth: 10
@@ -61,9 +63,9 @@ stages:
     outs:
     - path: metrics/train_metrics.json
       hash: md5
-      md5: c3b65466d61431b330ff1c5088c5db9f
-      size: 224
+      md5: e3ef555df6d255807f37c1a69f5ec667
+      size: 218
     - path: models/random_forest.joblib
       hash: md5
-      md5: cf30fec4adfcd767eddbe9403d785273
-      size: 44144257
+      md5: 8a17fe628c6c8d55562656566afdd4f6
+      size: 44144721

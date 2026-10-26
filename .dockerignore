@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.dvc/cache/
+data/
+models/
+mlruns/
+mlflow.db
+.ipynb_checkpoints/
+.env
